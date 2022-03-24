@@ -67,10 +67,13 @@ int main(int argc, char** argv)
     // The second file contents file contents
     cout << endl << "Weather2.dat file content" << endl;
     
-    while(in2 >> weather){
-        cout << weather;
-        count++;
-        if(count%nDays==0)cout << endl;
+    for(int month = 1; month <= nMonths; month++){
+        for(int day = 1; day<= nDays; day++){
+            char weather;
+            in2 >> weather;
+            cout << weather;
+        }
+        cout << endl;
     }
     
     // Display the Inputs and Outputs
