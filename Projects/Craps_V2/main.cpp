@@ -8,8 +8,8 @@
  * File:   main.cpp
  * Author: Ismael Perez
  *
- * Created on April 7, 2022, 10:42 AM
- * Purpose: Random number Generation Random number between 0 and 1
+ * Created on April 7, 2022, 11:45 AM
+ * Purpose: Win,Lose,Or Roll again
  */
 
 //System Libraries
@@ -36,27 +36,32 @@ int main(int argc, char** argv)
     // Set the Random Number Seed
     srand(static_cast<unsigned int>(time(0)));
     
+    unsigned int win,lose,rollAgn;
+    unsigned int nGames;
     
-    unsigned int maxRand; // max random number 
-    float minR, // min Random Number desired
-          maxR, // max Random Number desired  
-          randNum; // Random number achieved
     
-    // Initial Variables
-    maxRand = (1 << 15)-1; // 2^15-1 -> pow(2,15)-1
-    minR=maxR= 1.0f*rand() / maxRand;
+    win=lose=rollAgn = 0;
+    nGames = 1000;
     
-    for(int test = 1; test <=100; test++){
-        randNum =1.0f*rand() / maxRand;
-        if(randNum > maxR)maxR = randNum;
-        if(randNum < minR)minR = randNum;
+    for(int game = 1; game<=nGames; game++){
+        char die1= rand()%6+1;
+        char die2= rand()%6+1;
+        char sum= die1 +die2;
+        
+        if(sum == 7 || sum == 11)win++;
+        else if(sum == 2 || sum ==3 || sum ==12)lose++;
+        else rollAgn++;
     }
     
-    // Map the Inputs to the outputs
-   
+    cout << "Total number of games = " << nGames << endl;
+    cout << "Total number of games = " << win+lose+rollAgn << endl;
+    cout <<"Your wins = " << win << endl;
+    cout << "Your loses = " << lose << endl;
+    cout << "Roll Again = " << rollAgn << endl;
+    
+    
     // Display the Inputs and Outputs
-    cout << "The minimum random number encountered = " << minR << endl;
-    cout << "The maximum random number encountered = " << maxR << endl;
+    
     // Exit the code
     
     return 0;
